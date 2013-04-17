@@ -1,0 +1,123 @@
+<div id='item-edit'>
+<div class="field">
+<div class="label">Title</div><input type='text' id='item-title' value='<% if(typeof title !== 'undefined') print(title); %>' /></div>
+<div class="field">
+<div class="label">Source</div><input type='text' id='item-source' value='<% if (typeof source !== 'undefined') print(source); %>' /></div>
+<div class="field">
+<div class="label">Source URL</div><input type='text' id='item-source-url' value='<% if (typeof sourceUrl !== 'undefined') print(sourceUrl); %>' /></div>
+<div class="field">
+<div class="label">Category</div>
+<select id='item-category'>
+	<option value='News'>News</option>
+	<option value='Deal'>Deal</option>
+	<option value='Event'>Event</option>
+	<option value='Favorite'>Favorite</option>
+	<option value='Review'>Review</option>
+</select>
+</div>
+<div class="label">Note</div>
+<textarea id="item-note"><% if (typeof note !== 'undefined') print(note); %></textarea>
+</div>
+<div class='add-date'>
+	<div class="field">
+		<div class="label">Date Type</div>
+		<select id="date-type">
+			<option value="single">Single</option>
+			<option value="range">Range</option>
+			<option value="recurring">Recurring</option>
+		</select>
+		</div>
+	<div id="single-date">	
+		<div class="field">
+			<div class="label">Date</div>
+ 			<input type="text" id="item-date">
+ 		</div>
+ 	</div>
+ 	<div id="range-date">	
+ 		<div class="field">
+ 			<div class="label">Start Date</div>
+ 			<input type="text" id="item-start-date">
+ 		</div>
+		<div class="field">
+			<div class="label">End Date</div>
+			<input type="text" id="item-end-date">
+		</div>
+ 	</div>
+ <div id="recurring-date">	
+
+	<div class="field">
+		<div class="label">Recurrence Pattern</div>
+		<select id='recurrence-pattern'>
+			<option value='weekly'>Weekly</option>
+			<option value='monthly'>Monthly</option>
+		</select>
+	</div>
+	<div id='recurring-weekly'>
+		<div class="field">
+			<div class="label">Recur every:</div>
+			<input type="text" id="item-weekly-interval"> week(s) on:
+		</div>
+		<select multiple="multiple" size="5" id="item-weekly-day">
+			<option value="0">Sunday</option>
+			<option value="1">Monday</option>
+			<option value="2">Tuesday</option>
+			<option value="3">Wednesday</option>
+			<option value="4">Thursday</option>
+			<option value="5">Friday</option>
+			<option value="6">Saturday</option>	
+		</select>
+	</div>
+	<div id='recurring-monthly'>
+		<div class="field">
+			<select id='item-monthly-order'>
+				<option value='first'>First</option>
+				<option value='second'>Second</option>
+				<option value='third'>Third</option>
+				<option value='fourth'>Fourth</option>
+				<option value='last'>Last</option>
+			</select>
+		</div>
+		<div class="field">
+			<select id='item-monthly-day'>
+				<option value="0">Sunday</option>
+				<option value="1">Monday</option>
+				<option value="2">Tuesday</option>
+				<option value="3">Wednesday</option>
+				<option value="4">Thursday</option>
+				<option value="5">Friday</option>
+				<option value="6">Saturday</option>
+			</select>
+		</div>
+		<div class="field">
+			<div class="label"> of every </div>
+			<input type="text" id="item-monthly-interval"> month
+		</div>
+	</div>
+ </div>	
+</div>
+ 
+<div id='location-edit'>
+
+<div id='search-location'>
+	<div class="field">
+	<div class="label">Location Search</div>
+	<input type='text' id='location-input' value='<% if(typeof locationName !== 'undefined') print(locationName); %>'/></div>
+	
+	<select id="search-results" size=10></select>
+	<span class="addLocation" style="cursor:pointer; color:red; font-family:sans-serif;">[Add Location]</span>
+</div>
+
+<div id='add-location'>
+	
+	<div class="field">
+	<div class="label">Name</div><input type='text' id='location-name' /></div>
+	
+	<div class="field">
+	<div class="label">Address</div><input type='text' id='location-address' /></div>
+	
+	<span class="saveLocation" style="cursor:pointer; color:red; font-family:sans-serif;">[Save Location]</span>
+	
+</div>
+
+<span class="save" style="cursor:pointer; color:red; font-family:sans-serif;">[SAVE]</span>
+</div>

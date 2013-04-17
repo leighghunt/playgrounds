@@ -1,0 +1,55 @@
+
+  	<div id='map'></div>
+  	<div id='floating-bar-border'>
+	  	<div id='floating-bar'>
+	  		<div class='buttons'>
+	  			<a href="/map"><span class="icon-map icon"></span><span class="title">Map</span></a>
+	  			<a href="/list"><span class="icon-list icon"></span><span class="title">List</span></a>
+	  			<!--<a href="/cal"><span class="icon-cal icon"></span><span class="title">Calendar</span></a>-->
+	  		</div>
+	  		<div id='filters'>
+	  			Filter: 
+	  			<select id='filter-category'>
+	  				<option value='all'>All</option>
+	  				<option value='plygrd'>Playground</option>
+		  			<option value='bbcourt'>Basketball</option>
+		  			<option value='diamond60'>60' Baseball Diamonds </option>
+		  			<option value='diamond90'>90' Baseball Diamonds</option>
+		  			<option value='fbfield'>Football Field</option>
+		  			<option value='soccerjr'>Junior Soccer Fields</option>
+		  			<option value='soccerreg'> Regular Soccer Fields</option>
+		  			<option value='tennisct'>Tennis Courts</option>
+		  			<option value='volleyb'>Volleyball Courts</option>
+		  			<option value='skatepark'>Skate Parks</option>
+		  			<option value='picnic'>Picnic Areas</option>
+		  			<option value='woodland'>Wooded</option>
+		  			<option value='inswim'>Indoor Swimming Pool</option>
+		  			<option value='outswim'>Outdoor Swimming Pool</option>
+		  			<option value='kidswim'>Kids Swimming Pool</option>
+		  			<option value='spraypark'>Spray Park</option>
+		  			<option value='totlot'>Tot Lot</option>
+		  			<option value='rec'>Rec Center</option>
+		  			<option value='aquatic'>Aquatic Center</option>
+	  			</select>
+	  		</div>
+			</div>
+  	</div>
+  	<div id='item-border' <% if (typeof(item) == "undefined") {%>style='display: none'<% }%>>
+	  	<div id='item'><% if (typeof(item) != "undefined") { print(item); }%></div>
+	  </div>
+	  <div id='items-border' <% if (typeof(items) == "undefined") {%>style='display: none' <% }%>> 
+	  	<div id='items'><% if (typeof(items) != "undefined") { print(items); }%></div>
+  	</div>
+  	<div id="mask"></div>
+  	<!--<div id="logo"><a href="/about">About</a></div>-->
+  	
+  			  	
+
+	  <div id="dialog" class="window">
+	  	<div id="create-item"></div>
+	  	<div id="item-view">
+		 <iframe id='target'></iframe>
+			 </div>
+		   <!-- close button is defined as close class -->
+		   <a href="#" class="close">Close it</a>
+		</div>

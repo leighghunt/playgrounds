@@ -1,0 +1,14 @@
+Start db: 
+
+QGIS - open ESRI Shapefile. Set CRS as NAD83 Maryland - EPSG2804 773 export to GeoJson
+
+Import GeoJson: ./mongoimport -d parks -c import  < ~/Programming/playgrounds/playgrounds.geojson
+
+Import Rec Pts:  ./mongoimport -d parks -c recImport  < ~/Programming/playgrounds/rec.geojson
+
+Convert GeoJson: node import.js
+
+Export data as ESPG:4326
+
+db.runCommand({"distinct": "import","key": "properties.USE_TYPE" });
+db.runCommand({"distinct": "recImport","key": "properties.USE_TYPE" });

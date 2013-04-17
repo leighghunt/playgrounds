@@ -1,0 +1,15 @@
+<div id="mask"></div>
+<div id='app'>
+	<div id="header"><a href='/admin/items'>Manage Items</a><a href='/admin/rss'>RSS</a><a href='/admin/tweets'>Tweets</a></div>
+	<div id='tweet-list'></div>
+	<button id='more'>More Tweets</button>
+</div>
+<div id="dialog" class="window">
+	<div id="create-item"></div>
+	<div id="item-display">
+	 <iframe id='target'></iframe>
+	 </div>
+   <!-- close button is defined as close class -->
+   <a href="#" class="close">Close it</a>
+</div>
+
