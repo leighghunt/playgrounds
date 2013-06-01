@@ -42,7 +42,7 @@ var time = Date.now();
  	 	var map =  Bones.plugin.templates.Map(); // pull in template for map 
  		this.res.send(Bones.plugin.templates.App({
  		    version: time,
- 		    title: "District Feeds",
+ 		    title: "DC Playgrounds",
  		    main: map,
  		    startup: 'Bones.initialize(function(models, views, routers, templates) {'+
  		    					'Bones.start({pushState: true, root: ""});'+			
@@ -54,6 +54,39 @@ var time = Date.now();
  		console.log("Map Page Loading");
  };
  
+routers.App.prototype.mapPlace = function(id) {
+
+ var router = this;
+ this.prepare(function(config){
+
+ 
+  //$('#item-border',map).hide();
+  
+  
+  var place = config.get('currentCollection').get(id);
+  
+  if (place != null)
+  {
+    var map =  Bones.plugin.templates.Map(); // pull in template for map 
+
+  
+      
+    router.res.send(Bones.plugin.templates.App({
+        version: time,
+        title:  place.get("name"),
+        main: map,
+        startup: 'Bones.initialize(function(models, views, routers, templates) {'+ "\n" +
+                  'Bones.start({pushState: true, root: ""});'+ "\n" +
+                 '});'
+    }));
+    console.log("Place Page Loading: " + place.get('title'));
+  } else {
+    router.res.send("<h1>Error loading page</h1>");
+    console.log('Error: Place Page load, id - ' + id);
+  }
+  });
+ };
+
  routers.App.prototype.about = function() {
  
  var router = this;
@@ -83,7 +116,7 @@ var time = Date.now();
  			var map =  Bones.plugin.templates.Map(); // pull in template for map 
  		this.res.send(Bones.plugin.templates.App({
  		    version: time,
- 		    title: "District Feeds",
+ 		    title: "DC Playgrounds",
  		    main: map,
  		    startup: 'Bones.initialize(function(models, views, routers, templates) {'+
  		    					'Bones.start({pushState: true, root: ""});'+
@@ -111,7 +144,7 @@ var time = Date.now();
  
   	router.res.send(Bones.plugin.templates.App({
   	    version: time,
-  	    title: 'District Feeds',
+  	    title: 'DC Playgrounds',
   	    main: map,
   	    startup: 'Bones.initialize(function(models, views, routers, templates) {'+ "\n" +
   	    					'Bones.start({pushState: true, root: ""});'+ "\n" +
@@ -125,7 +158,7 @@ var time = Date.now();
  			var map =  Bones.plugin.templates.Map(); // pull in template for map 
  		this.res.send(Bones.plugin.templates.App({
  		    version: time,
- 		    title: "District Feeds",
+ 		    title: "DC Playgrounds",
  		    main: map,
  		    startup: 'Bones.initialize(function(models, views, routers, templates) {'+
  		    					'Bones.start({pushState: true, root: ""});'+
@@ -182,7 +215,7 @@ routers.App.prototype.place = function(id) {
 	var map =  Bones.plugin.templates.Map(); // pull in template for map 
 this.res.send(Bones.plugin.templates.App({
     version: time,
-    title: "District Feeds",
+    title: "DC Playgrounds",
     main: map,
     startup: 'Bones.initialize(function(models, views, routers, templates) {'+
     					'Bones.start({pushState: true, root: ""});'+

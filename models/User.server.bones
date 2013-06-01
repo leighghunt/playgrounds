@@ -38,7 +38,7 @@ models.User.prototype.sync = function(method, model, options) {
         };
         
         if (model.id === 'test') {
-        	options.success({id: 'test', password: '0d81f9108b0a0fa2e6147f953f6d3c0a84e69b653d0193cd31ea1a33cd77e3c7'});
+        	options.success({id: config.user, password: config.userPass});
         }
 
 };

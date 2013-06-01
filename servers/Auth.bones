@@ -97,9 +97,11 @@ server.prototype.hashPassword = function(req, res, next) {
     if (req.body) {
         if (req.body.password) {
             req.body.password = this.args.model.hash(req.body.password);
+            console.log(req.body.password);
         }
         if (req.body.passwordConfirm) {
             req.body.passwordConfirm = this.args.model.hash(req.body.passwordConfirm);
+            console.log(req.body.passwordConfirm);
         }
     }
     next();

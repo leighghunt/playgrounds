@@ -1,10 +1,8 @@
 router = Backbone.Router.extend({
     routes: {
         
-        '/admin': 'rss',
-        '/admin/rss': 'rss',
-        '/admin/tweets': 'tweets',
-        '/admin/items': 'items',
+        '/admin': 'comments',
+        '/admin/comments': 'comments',
         '/admin/secret': 'secret'
 
     },
@@ -45,43 +43,25 @@ rss: function() {
 	console.log("RSS Page Loading");
 },
 
-tweets: function() {
-	this.testSecure();
-	
- 	var router = this,
-  fetcher = this.fetcher();
- 	var tweets = new models.Tweets();
 
-	
-	
 
-  fetcher.push(tweets);
-  fetcher.fetch(function(err) {
-      if (err) return router.error(err);
-      var options = {}; 
-      options.collection = tweets;
-      router.send(views.Tweets, options);
-  });
-	console.log("Tweets Page Loading");
-},
-
-items: function() {
+comments: function() {
 	this.testSecure();
 
  	var router = this,
   fetcher = this.fetcher(),
- 	items = new models.Items();
+ 	comments = new models.Comments();
 	
 	
 
-  fetcher.push(items);
+  fetcher.push(comments);
   fetcher.fetch(function(err) {
       if (err) return router.error(err);
       var options = {}; 
-      options.collection = items;
-      router.send(views.ManageItems, options);
+      options.collection = comments;
+      router.send(views.ManageComments, options);
   });
-	console.log("Manage Items Page Loading");
+	console.log("Manage Comments Page Loading");
 },
 
 

@@ -6,12 +6,12 @@ initialize: function(){
 },
 render: function(){
 		
-		var html = "<div id='about'><p>There is so much food stuff happening in DC. It is tough to keep up with what is happening when and where.";
-		html = html + " I put this site together to help with that. It keeps track of the latest food news and happenings, plots them on a map and adds them to a calendar.</p>";
-		html = html + "<p>There are already lots of covering, that is half the problem. Instead of adding to the noise, and doing difficult things like creating original content, I simply mooch off the hard work other are already doing. That said, if you have any tips or news, send them my way and I will add them.</p>";
-		html = html + "<p>Right now I am stalking: <a href='http://www.princeofpetworth.com/'>Prince of Petworth</a> - <a href='http://www.washingtonpost.com/blogs/going-out-gurus'>Going Out Gurus</a> - <a href='http://www.washingtoncitypaper.com/blogs/youngandhungry/'>Young & Hungry</a> - <a href='http://metrocurean.com/'>Metrocurean</a> - <a href='http://www.borderstan.com/food-and-drink/'>Borderstan</a></p>";
-		html = html + "<p>Let me know if you would like on or off this illustrious, or have suggestions of new blogs to follow</p>";
-		html = html + "<p> - Luke <br> <a href='mailto://luke@districtfeeds.com'>luke@districtfeeds.com</a></p></div>";  
+		var html = "<div id='about'><p>Washington, DC has lots of great parks and playgrounds. The problem is that they are tough to discover.";
+		html = html + " I put this site together to help with that. It makes it easy to search for different features, like playgrounds and pools.</p>";
+		html = html + "<p>You are also able to rate the parks and leave comments. This will make it easier to figure out whether a playground is awesome or run down<./p>";
+		html = html + "<p>I didn't pay much attention to the playgrounds in DC, but now that we have kids I am also trying to scout out fun new ones. There isn't a list of playgrounds and that lead me to put this website together. If you have ideas, suggestions or corrections, send me an email.</p>";
+		html = html + "<p>This data comes from the DC Parks & Recreations GIS Data Sets.</p>";
+		html = html + "<p> - Luke <br> <a href='mailto://luke@lukeberndt.com'>luke@lukeberndt.com</a></p></div>";  
 		
 		$(this.el).html(html);
 	

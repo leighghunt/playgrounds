@@ -2,6 +2,7 @@
 var Db = require('mongodb').Db,
   Connection = require('mongodb').Connection,
   Server = require('mongodb').Server;
+  config = require('./config.json');
 require('iron-bones').load(__dirname);
 
 var host = process.env['MONGO_NODE_DRIVER_HOST'] != null ? process.env['MONGO_NODE_DRIVER_HOST'] : 'localhost';
@@ -14,6 +15,10 @@ if (!module.parent) {
 	console.log("index initalized " + __dirname);
 	mongo.open(function(err, db) {
 		global.db = db;
+		db.authenticate(config.dbUser, config.dbPass, function() {
+		
+			
+		});
 	});
 
 		

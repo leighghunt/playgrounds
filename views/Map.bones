@@ -8,11 +8,11 @@
 
 view = views.Main.extend({
            defaultStyle: {
-            color: "#2262CC",
+            color: "#ff3232",
             weight: 2,
             opacity: 0.6,
             fillOpacity: 0.1,
-            fillColor: "#2262CC"
+            fillColor: "#b28000"
         },
         minimalStyle: {
             color: "#CCCCCC",
@@ -22,11 +22,11 @@ view = views.Main.extend({
             fillColor: "#CCCCCC"
         },
         highlightStyle: {
-            color: '#2262CC', 
+            color: '#ff3232', 
             weight: 3,
             opacity: 0.6,
             fillOpacity: 0.65,
-            fillColor: '#2262CC'
+            fillColor: '#b28000'
         },
 initMap: function() {
  
@@ -38,7 +38,8 @@ this.mapStuff = L.map('map', {
     zoom: 13
 });
 L.tileLayer('http://tiles-a.cookography.com/v2/dc_base/{z}/{x}/{y}.png',{}).addTo(this.mapStuff);
-
+L.Control.Attribution({prefix: false});
+this.mapStuff.attributionControl.setPrefix('');
 },
 
 
@@ -59,7 +60,7 @@ events: {
       
       	$('#filter-category').change(this.changeFilterCategory);
     },
-    render: function(collection) {
+    render: function(collection, loc) {
 
 
 				if (typeof collection != 'undefined')
@@ -70,7 +71,13 @@ events: {
 				if (typeof this.config != 'undefined')
 				{
 					this.clearLayers();
-					this.renderItems();
+                    this.renderItems();
+                    if (typeof loc != 'undefined') {
+                        var latlng = new L.LatLng(loc[1], loc[0]);
+                        console.log(latlng);
+                        this.mapStuff.setView( latlng, 17 );
+                    }
+					
 				}
 
 				 	$('#item-border').hide();
@@ -123,15 +130,15 @@ events: {
 	 		this.appendItem(item);
 	 	}, this);	
         var geojsonMarkerOptions = {
-            radius: 5,
-            fillColor: "#ff7800",
+            radius: 8,
+            fillColor: "#b28000",
             color: "#000",
             weight: 1,
             opacity: 1,
             fillOpacity: 0.8
         };
         var myStyle = {
-            "color": "#ff7800",
+            "color": "#b28000",
             "weight": 1,
             "opacity": 0.65
         };
@@ -148,15 +155,7 @@ events: {
                 // Create a popup with a unique ID linked to this record
                 var popup = $("<div></div>", {
                     id: "popup-" + properties.id,
-                    css: {
-                        position: "absolute",
-                        bottom: "85px",
-                        left: "50px",
-                        zIndex: 1002,
-                        backgroundColor: "white",
-                        padding: "8px",
-                        border: "1px solid #ccc"
-                    }
+                    class: "wax-tooltip"
                 });
                 // Insert a headline into that popup
                 var hed = $("<div></div>", {

@@ -2,6 +2,7 @@ router = Backbone.Router.extend({
     routes: {
         '/': 'map',
         '/map': 'map',
+        '/map/:id': 'mapPlace',
         '/map/:filter/:value': 'map',
         '/list': 'list',
         '/list/:filter/:value': 'list',
@@ -55,6 +56,21 @@ about: function() {
 		$('#items').empty().append(aboutView.el);
 		$('#items-border').show();
 	});
+},
+map: function(filter, value) {
+		
+	 	var router = this;
+	 	
+
+	 	this.prepare(filter, value, function(){
+
+		 	
+		 	$('#item-border').hide();
+		 	$('#items-border').hide();
+		 	router.config.get('mapView').render(router.config.get('filtered'));
+
+	 	});
+		
 },
 map: function(filter, value) {
 		
@@ -126,9 +142,42 @@ place: function(id) {
 		});
 	
 },
+
+mapPlace: function(id) {
+
+		var router = this;
+		console.log(router);
+		this.prepare(function(){
+
+	 		
+	 		
+			var place = router.config.get('currentCollection').get(id);
+			if (place != null) {
+
+		 		
+				 	$('#item-border').hide();
+				 	$('#items-border').hide();
+				 	loc = place.get('loc');
+				 	console.log(loc);
+				 	if (loc.type == 'Polygon') {
+				 		center = loc.coordinates[0][0];
+				 	} else {
+				 		center = loc.coordinates[0];
+				 	}
+			 		router.config.get('mapView').render(router.config.get('currentCollection'),center);
+		 		
+			 	
+			} else {
+				console.log('Error: Item Page load, id - ' + id);
+			
+			}
+	 	
+		});
+	
+},
     // Helper to assemble the page title.
     pageTitle: function(view) {
-        var title =  'District Feeds';
+        var title =  'DC Playgrounds';
         return (view.pageTitle ? view.pageTitle + ' | ' + title : title);
     },
 

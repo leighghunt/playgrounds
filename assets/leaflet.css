@@ -228,8 +228,10 @@
 	}
 
 
-/* zoom control */
 
+
+/* zoom control */
+/*
 .leaflet-container .leaflet-control-zoom {
 	margin-left: 13px;
 	margin-top: 12px;
@@ -275,7 +277,7 @@
 	font-size: 28px;
 	line-height: 24px;
 	}
-
+*/
 /* layers control */
 
 .leaflet-control-layers {

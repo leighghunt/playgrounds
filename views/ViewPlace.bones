@@ -31,6 +31,7 @@ tagName:  "div",
 id: 'item-view',
 events: {
 	'click #item-close': 'unrender',
+	'click input[type="radio"]' : 'handleRatingClick',
 	'submit #commentform': 'saveComment'
 	},
 	initialize: function(){
@@ -41,13 +42,48 @@ events: {
 		//this.model.bind('remove', this.unredner);
 	},
 
+	setRating : function(rating) {
+        var radio = $('input[name="Place"]').filter('[value="'+rating+'"]');
+        if (rating > 0 && rating <= 5) { 
+            //need to see if radio is checked. If not, check it. This will
+            //be the case if rating was set externally.
+            if (!radio.is(':checked'))
+                radio.attr('checked', true);
+            this._rating = rating;
+            this.trigger('ratingChanged',{rating : rating});
+        } else {
+            console.error('Rating out of range. Rating must be >= 1 and <= 5');
+        }
+    },
+    getRating : function() {
+        return this._rating;
+    },                
+    /**
+    * Gets the current target (radio), gets its value
+    * then triggers an event to which listeners can respond.
+    */
+    handleRatingClick : function(e) {
+        this.setRating($('input[name="Place"]:checked').val());
+    },
+    renderComment: function(comment){
+    		html = "<div class='comment'><span class='date'>" + printDate(comment.get('date')) + "</span> - <span class='stars'>";
+			if (comment.get('rating')) {
+				for (var idx=0;idx<comment.get('rating');idx++) {
+					html = html+ "<span class='star'>★ </span>";
+				};
+			}	
+			html = html+"</span>";
+			html = html+"<p>"+comment.get('comment')+"</p>";
+			html = html + "</div>";
+			return html;
+    },
 	render: function(){
 	var html = "<div id='item-close' class='close'></div>";
 	url = this.model.get('url');
 	if (url) {
-		html = html + "<h2><a href='"+url+"'>"+this.model.get('name') + "</a></h2>";
+		html = html + "<h2><a href='"+url+"'>"+this.model.get('name') + "</a><a class='mapPin' href='/map/" + this.model.get('id') +"'><img src='/assets/playgrounds/images/map_pin_alt.png'></a></h2>";
 	} else {
-		html = html + "<h2 >"+this.model.get('name') + "</h2>";
+		html = html + "<h2 >"+this.model.get('name') + "<a class='mapPin' href='/map/" + this.model.get('id') +"'><img src='/assets/playgrounds/images/map_pin_alt.png'></a></h2>";
 	}
 	html = html + "<div class='meta'>" + this.model.get('address') + "</div>";
 	phone = this.model.get('phone');
@@ -119,22 +155,40 @@ events: {
 	var comments = this.model.get('comments');
 	if (comments) {
 		html = html+"<div id='comments'>";
+		html = html + "<h3 id='CommentCount'>" + comments.length + " Comments</h3>";
+		self = this;
 		comments.each(function(comment) {
-			html = html+"<p>"+comment.get('comment')+"</p>";
+			html = html + self.renderComment(comment);
 		});
 		html = html+"</div>";
 	}
-	html=html+"<form id='commentform'><textarea id='comment' rows='4' cols='50'/><input type='submit' value='Submit'></form>";
+	html=html+"<form id='commentform'><h3>Leave a Comment</h3>";
+	html=html+"<textarea id='comment' rows='4' cols='50'/>";
+	html=html+'<div id="rating"><fieldset class="rating">';
+
+        for (var idx=5;idx>0;idx--) {
+            html=html+'<input type="radio" id="star' + idx + '" name="Place" value="' + idx + '" />';
+        	html=html+'<label for="star'+ idx + '" title="'+ idx + ' Stars"></label>';
+        }
+       
+    html=html+'</fieldset><div>';
+
+	html=html+"<input type='submit' value='Submit'></form>";
+
 	$(this.el).html( html );
-			return this;
+
+	return this;
 	},
+
 	saveComment: function() {
 
-		var comment = new models.Comment({'parkId': this.model.get('_id'),'comment': $('#comment').val()});
+		var comment = new models.Comment({'parkId': this.model.get('_id'),'comment': $('#comment').val(), 'rating': this.getRating()});
        // this triggers a RESTFul POST (or PUT) request to the URL specified in the model
+       self = this;
        comment.save({},{success: function(model, response, options){
-
-				$('#comments').append("<p>"+model.get('comment')+"</p>");
+			$('#comments').append(self.renderComment(model));
+			$('#comment').val('');
+			//$('#CommentCount').html(self.model.get('comments').length + " Comments");
        	}	
    		});
        return false;

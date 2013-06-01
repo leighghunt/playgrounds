@@ -1,0 +1,6 @@
+{
+	"admin": "username",
+	"adminPass": "hashed password",
+	"dbUser": "mongodb username",
+	"dbPass": "mongodb password"
+}

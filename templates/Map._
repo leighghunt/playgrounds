@@ -41,7 +41,7 @@
 	  	<div id='items'><% if (typeof(items) != "undefined") { print(items); }%></div>
   	</div>
   	<div id="mask"></div>
-  	<!--<div id="logo"><a href="/about">About</a></div>-->
+  	<div id="logo"><a href="/about">About</a></div>
   	
   			  	
 

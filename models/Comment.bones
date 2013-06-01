@@ -4,7 +4,12 @@ var model = Backbone.Model.extend({
 	initialize: function() {
     },
 	url: function() {
+		if (typeof this.get('id') != 'undefined') {
 		
-		return '/api/Comment/';
+			return '/api/Comment/' + this.get('id');
+		} else {
+			return '/api/Comment/';
+		}
+		
 	}
 });

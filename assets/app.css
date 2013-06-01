@@ -1,5 +1,101 @@
+/* @override 
+	http://localhost:3001/assets/playgrounds/app.css?1368383148691
+	http://localhost:3001/assets/playgrounds/app.css?1369013828612 */
+	
+	/* Color:
+	NPS Green: #5e7630
+	NPS Brown: #b28000
+	DC Red: #c03
+	DPR Green: #006940
+	*/
+	
+	#item-view a.mapPin img{
+	padding-left: 10px;
+	}
+	
+
+	
+	.rating {
+    float:left;
+    border: 0px;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:100%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
 
 
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+
+.star {
+
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    font-size:100%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.comment {
+ margin-bottom: 15px;
+ margin-right: 50px;
+ border-bottom: 1px solid #fff;
+
+}
+#rating {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 /* @group General */
 
 body {
@@ -19,7 +115,7 @@ body {
 #logo {
 	min-width: 275px;
 	height: 50px;
-	background:transparent url(/assets/playgrounds/images/district-feeds.png) no-repeat;
+	background:transparent url(/assets/playgrounds/images/dc-playgrounds.png) no-repeat;
 	position: absolute;
 	left: 5px;
 	bottom: 0px;
@@ -35,7 +131,7 @@ body {
 
 #logo a{
 	font-size: 10px;
-	color: #ff3232;
+	color: #5e7630;
 	padding-left: 272px;
 	bottom: 11px;
 	position: absolute;
@@ -44,7 +140,7 @@ body {
 
 
 a {
-	color: #c03;
+	color: #5e7630;
 	text-decoration: none;
 }
 
@@ -68,6 +164,7 @@ a {
 	top: 75px;
 	left:  50px;
 	right: 50px;
+	bottom: 50px;
 	z-index:999999;
   background:transparent url(/assets/playgrounds/images/midmask.png) repeat;
   padding: 5px;
@@ -75,7 +172,7 @@ a {
   -webkit-border-radius: 3px;
   -khtml-border-radius: 3px;
   border-radius: 3px;
-  overflow: hidden;
+  overflow: auto;
   }
 
 #item-border {
@@ -176,10 +273,38 @@ bottom: 50px;
 		//color: #7F0D29;
 	}
 	
+	/*
+		#item-view h2, #item-view h3{	
+			font-weight: bold;
+	text-shadow:
+	 -1px -1px 0 #000,  
+	  1px -1px 0 #000,
+	  -1px 1px 0 #000,
+	   1px 1px 0 #000;
+			
+			
+			
+			letter-spacing: 2px;
+		}
+		*/
+		#item-view h3 {
+			font-weight: normal;
+		}
+		#item-view h2 a{
+		color:  #fff;
+		}
 	#item-view h2 {
+	color:  #fff;
 		margin-bottom: 5px;
-		//text-shadow: 0px 1px 2px #333;
-		//color: #E82077;
+		font-size: 28px;
+		letter-spacing: 2px;
+		font-weight: bolder;
+		/*text-shadow:
+		 -1px -1px 0 #000,  
+		  1px -1px 0 #000,
+		  -1px 1px 0 #000,
+		   1px 1px 0 #000;*/
+		   text-shadow: 0px 1px 2px #333;
 	}
 	
 	#item-view div#note {
@@ -196,18 +321,29 @@ bottom: 50px;
 		}
 		
 		.list-item {
-			width: 300px;
-			min-height: 140px;
-			float: left;
+			//width: 300px;
+			min-height: 30px;
+			//float: left;
 			margin-bottom: 15px;
 			margin-left: auto;
+			clear: both;
+			//width: 100%;
+			padding-right: 10px;
+			padding-left: 10px;
+			border-bottom: 1px solid #aaa;
+		}
+		
+		.list-item .map_pin_small {
+			padding-right: 5px;
 		}
 		
 		.list-item .title {
 			margin-bottom: 3px;
-			//font-weight: bold;
+			float:  left;
+			width: 300px;
+			font-weight: bold;
 			//text-shadow: 0px .5px 1px #333;
-			clear: both;
+			//clear: both;
 		}
 		.list-item .title a{
 			//color: #E82077;
@@ -218,6 +354,23 @@ bottom: 50px;
 			font-weight: bold;
 			float: left;
 			padding-left: 2px;
+		}
+		
+		.list-item .activities {
+			float: left;
+			padding-left: 5px;
+		}
+		
+		.list-item .activities img{
+			
+			padding-left: 5px;
+		}
+		.list-item .address a{
+			color: #fff;
+			font-size: 12px;
+			padding-left: 2px;
+			float:  left;
+			min-width: 300px;
 		}
 		
 		.list-item .category{
@@ -301,51 +454,70 @@ bottom: 50px;
   overflow:hidden;
   background:url(/assets/playgrounds/images/controls.png) 0px 0px no-repeat;
   }
-  
-.wax-tooltip .title {
-	font-size: 16px;
-}
- 
- .wax-tooltip .meta {
- 	font-size: 14px;
- } 
- 
+  .leaflet-top .leaflet-control {
+  	margin-top: 0px;
+  }
+  .leaflet-left .leaflet-control {
+  	margin-left: 0px;
+  }
+  .leaflet-container a {
+  	color: #fff;
+  }
+  .leaflet-bar-part {
+  	background-color: transparent;
+  	width: 30px;
+  	height:40px;
+  	border: 0px;
+  	background: transparent url(/assets/playgrounds/images/midmask.png) repeat;
+  	-moz-border-radius: 3px;
+  	-webkit-border-radius: 3px;
+  	-khtml-border-radius: 3px;
+  	border-radius: 3px;
+  }
+  .leaflet-bar {      
+  	
+  	box-shadow: 0px 0px 0px #444;
 
-  a.zoomer {
+  	border: 0px solid #333;
+  	}
+  .leaflet-zoom-box {
+  	
+  }
+  .leaflet-control-zoom {
   text-decoration:none;
   position:absolute;
- 	background:transparent url(/assets/playgrounds/images/midmask.png) repeat;
+  text-shadow: 0px 1px 2px #333;
   
   color:#fff;
   line-height:30px;
   font-size:26px;
   z-index:99999;
   text-align:center;
-  width:30px;
-  height:40px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  text-shadow: 0px 1px 2px #333;
+
+  
+
   }
 
-  a.zoomin {
+  .leaflet-control-zoom-in {
   	top: 10px;
     left:10px;
+    position: absolute;
     }
 
-  a.zoomout {
+  .leaflet-control-zoom-out {
   	top: 10px;
     left:50px;
+    position: absolute;
     }
  
  @media only screen and (max-device-width: 480px) { 
  
- a.zoomer { 
+ .leaflet-control-zoom { 
  	display: none;
  }
   }  
  
+
  /* @end */
  
  /* @group Floating Bar - Menu bar on top of Map */
@@ -397,9 +569,11 @@ bottom: 50px;
     }
     
      #floating-bar  #filters {
+     
      	    	padding-top: 3px;
     	float: right;
-    }
+			letter-spacing: 1px;
+		}
     
      #floating-bar #links {
          	padding-top: 3px;
@@ -417,7 +591,9 @@ bottom: 50px;
     #floating-bar .buttons .title {
     	padding-top: 2px;
     	float: left;
-    }
+			letter-spacing: 1px;
+			font-weight: normal;
+		}
     
     #floating-bar .buttons .icon {
     	float:left;
@@ -535,41 +711,7 @@ background: url(/assets/playgrounds/images/sprites.png) -48px -144px;
 	overflow: hidden;
 }
 
-#rss-items {
-	overflow: hidden;
-	margin: 20px 40px 0 245px;
-}
 
-#item-filters {
-	margin: 10px;
-	border: 1px solid gray;
-	background-color: silver;
-	font-size: 16px;
-	padding: 5px 10px;
-}
-
-
-.filter-item-heart{
-width: 24px;
-height: 24px;
-background: url(/assets/playgrounds/images/sprites.png) 0 0;
-	
-	display: inline-block;
-	margin: 0 5px;
-}
-
-.filter-all{
-width: 24px;
-height: 24px;
-background: url(/assets/playgrounds/images/sprites.png) -24px -48px;
-	
-	display: inline-block;
-	margin: 0 5px;
-}
-
-.item-heart, .item-read, .item-add {
-	float: left;
-}
 
 #header {
 	margin: 10px 20px 5px;
@@ -624,72 +766,10 @@ div.meta {
 	margin-left: 5px;
 }
 
-div.rss-item {
-	clear: both;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	overflow: hidden;
-	border-bottom: 1px dotted silver;
-	padding: 0 5px 15px;
-}
-
-#rss-item-list .rss-item h3  {
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
 
 div.item-actions {
 	overflow: hidden;
 	margin-top: 5px;
-}
-
-.filter-item-unread{
-	height: 24px;
-background: url(/assets/playgrounds/images/sprites.png) 0px -24px;
-margin: 0 5px;
-	display: inline-block;
-	width: 18px;
-}
-.heart {
-	width: 24px;
-	height: 24px;
-	background: url(/assets/playgrounds/images/sprites.png) 0 0;
-	
-}
-
-.no-heart {
-	width: 24px;
-	height: 24px;
-	background: url(/assets/playgrounds/images/sprites.png) -24px 0;
-}
-
-.unread {
-	width: 24px;
-	height: 24px;
-	background: url(/assets/playgrounds/images/sprites.png) 0px -24px;
-}
-
-.read {
-	width: 24px;
-	height: 24px;
-	background: url(/assets/playgrounds/images/sprites.png) -24px -24px;
-}
-
-.item-add {
-	width: 24px;
-	height: 24px;
-	background: url(/assets/playgrounds/images/sprites.png) 0 -48px;
-}
-
-.rss-item h3 {
-	font-size: 18px;
-	font-weight: bold;
-}
-
-#rss-feeds {
-	margin: 20px;
-	width: 200px;
-	float: left;
 }
 
 
@@ -703,42 +783,6 @@ margin: 0 5px;
 }
 
 
-#tweets {
-	width: 375px;
-	float: left;
-	margin: 10px;
-}
-.tweet {
-	overflow: hidden;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.tweet .profile-picture {
-	float: left;
-	padding: 10px;
-	
-}
-
-.tweet .text {
-	
-	float: left;
-	overflow: hidden;
-	width: 250px;
-}
-
-.tweet .screen-name {
-	font-weight: bold;
-	margin-right: 10px;
-}
-
-.tweet .save-tweet {
-	float: left;
-}
-
-.tweet .user {
-	margin-bottom: 5px;
-}
 
 #mask {
   position:absolute;
@@ -766,7 +810,5 @@ margin: 0 5px;
  
 /* Customize your modal window here, you can add background image too */
 
-#add-location {
-	display: none;
-}
+
 /* @end */
